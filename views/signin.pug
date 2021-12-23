@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  //- h1 #{title}
+  //- ul.list-group
+  //-   each article, i in articles
+  //-    li.list-group-item= article.title
+  if uid
+    h6 您的名稱是: #{displayName}
+  else 
+    h6 您還沒登入
+  form(action="/login/logout", method="post")
+    button(type="submit").btn 登出

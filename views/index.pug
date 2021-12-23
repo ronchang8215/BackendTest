@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  main.form-signin.text-center
+    form(action="/login/signin", method="post")
+      img.mb-4(src='/docs/5.1/assets/brand/bootstrap-logo.svg' alt='' width='72' height='57')
+      h1.h3.mb-3.fw-normal Please sign in
+      .form-floating
+        input#floatingInput.form-control(type='email' placeholder='name@example.com' name="email")
+        label(for='floatingInput') Email address
+      .form-floating
+        input#floatingPassword.form-control(type='password' placeholder='Password' name="password")
+        label(for='floatingPassword') Password
+      .checkbox.mb-3
+        label
+          input(type='checkbox' value='remember-me')
+          |  Remember me
+      button.w-100.btn.btn-lg.btn-primary(type='submit') Sign in
+      p.mt-5.mb-3.text-muted © 2017–2021
+
