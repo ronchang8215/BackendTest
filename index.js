@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var csurf = require('csurf');
+require('dotenv').config();
 // var logger = require('morgan');
 var db = require('./config/db');
 
@@ -14,7 +15,7 @@ var csrfProtection = csurf({ cookie: true });
 // const db = require('./config/db');
 
 const app = express();
-const port = 7000;
+const port = process.env.PORT || 7000;
 
 var check = function(req, res, next) {
   if(req.session.uid){
