@@ -2,15 +2,14 @@ extends layout
 
 block content
   main.form-signin.text-center
-    form(action="/login/signup", method="post")
-      h1.h3.mb-3.fw-normal  註冊會員
-      .form-floating
-        input#floatingInput.form-control(type='text' placeholder='Name' name="username")
-        label(for='floatingInput') Username
+    form(action="/login/signin", method="post")
+      h1.h3.mb-3.fw-normal 登入會員
       .form-floating
         input#floatingInput.form-control(type='email' placeholder='name@example.com' name="email")
         label(for='floatingInput') Email address
-      .form-floating
+      .form-floating.mb-3
         input#floatingPassword.form-control(type='password' placeholder='Password' name="password")
         label(for='floatingPassword') Password
-      button.w-100.btn.btn-lg.btn-primary.mt-3(type='submit') 註冊
+      button.w-100.btn.btn-lg.btn-primary(type='submit') 登入
+    p.mt-3 或是
+      a(href='/login/signup') 註冊會員

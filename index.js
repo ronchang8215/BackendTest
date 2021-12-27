@@ -7,12 +7,9 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var csurf = require('csurf');
 require('dotenv').config();
-// var logger = require('morgan');
 var db = require('./config/db');
 
 var csrfProtection = csurf({ cookie: true });
-
-// const db = require('./config/db');
 
 const app = express();
 const port = process.env.PORT || 7000;
@@ -46,7 +43,7 @@ app.use(bodyParser.json())
 
 app.get('/', function (req, res) {
   res.render('index', {
-    title:'heyyoman'
+    title:'登入系統'
   });
 });
 
@@ -75,9 +72,9 @@ app.listen(port, () => {
 })
 
 
-db.ref('user').once('value', function (snapshot) {
-  console.log(snapshot.val());
-})
+// db.ref('user').once('value', function (snapshot) {
+//   console.log(snapshot.val());
+// })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

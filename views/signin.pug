@@ -5,9 +5,9 @@ block content
   //- ul.list-group
   //-   each article, i in articles
   //-    li.list-group-item= article.title
-  if uid
-    h6 您的名稱是: #{displayName}
-  else 
-    h6 您還沒登入
-  form(action="/login/logout", method="post")
-    button(type="submit").btn 登出
+  form.text-center(action="/login/logout", method="post")
+    if uid
+      h3 您的名稱是： #{displayName}
+    else 
+      h6 您還沒登入
+    button(type="submit").w-100.btn.btn-lg.btn-primary.mt-3 登出

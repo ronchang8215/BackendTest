@@ -8,13 +8,15 @@ var validationResult = require('express-validator/check').validationResult;
 const validat = [
   check('email').isEmail().withMessage('Email 格式錯誤'),
   check('password').isLength({ min: 8 }).withMessage('密碼不可少於 8 字元'),
-  check('username').isLength({ min: 2 }).withMessage('姓名不可低於 3 個字元'),
-  check('nikename').isLength({ min: 3 }).withMessage('姓名不可低於 3 個字元')
+  check('username').isLength({ min: 2 }).withMessage('姓名不可低於 2 個字元')
 ];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: '登入畫面' });
+  res.render('login', { 
+    title: '登入畫面',
+    success: req.flash('info')
+  });
 });
 
 router.post('/signin', function(req, res, next) {
@@ -24,7 +26,6 @@ router.post('/signin', function(req, res, next) {
   .then(function(user) {
     req.session.uid = user.user.uid;
     req.session.displayName = user.user.displayName;
-    console.log(req.session.uid);
     res.redirect('/user');
   })
   .catch(function(error) {
@@ -38,21 +39,22 @@ router.post('/signin', function(req, res, next) {
 
 router.get('/signup', function(req, res, next) {
   res.render('register', {
-    // csrfToken: req.csrfToken(),
     success: req.flash('info'),
+    tryagain: req.flash('warning'),
+    errors: req.flash('error'),
     title: '註冊帳號'
   });
 });
 
 router.post('/signup',validat, function(req, res, next) {
-  var errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    req.flash('info',errors.array());
-    return res.redirect('/login/signup');
-  }
   var email = req.body.email;
   var password = req.body.password;
   var username = req.body.username;
+  var errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    req.flash('warning',errors.array());
+    return res.redirect('/login/signup');
+  }
   firebase.auth().createUserWithEmailAndPassword(email, password)
   .then(function(userCredentials) {
     userCredentials.user.updateProfile({ displayName: username });
@@ -63,7 +65,7 @@ router.post('/signup',validat, function(req, res, next) {
     // Handle Errors here.
     // var errorCode = error.code;
     var errorMessage = error.message;
-    req.flash('info', errorMessage);
+    req.flash('error', errorMessage);
     res.redirect('/login/signup');
   });
 });

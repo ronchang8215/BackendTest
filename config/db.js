@@ -1,19 +1,3 @@
-// const mysql = require("mysql");
-
-// const connection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "test"
-// });
-
-// module.exports = connection;
-
-// db.query('select * from servertest', function(err, rows) {
-//   if (err) throw err;
-//   console.log('Response: ', rows);
-// });
-
 const firebaseAdmin = require("firebase-admin");
 require('dotenv').config();
 
