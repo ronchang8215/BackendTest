@@ -47,18 +47,6 @@ app.get('/', function (req, res) {
   });
 });
 
-// app.get('/signin', function (req, res) {
-//   let articles = [
-//     {title:'one'},
-//     {title:'two'},
-//     {title:'three'}
-//   ];
-//   res.render('signin', {
-//     title:'signin',
-//     articles:articles
-//   });
-// })
-
 //routes
 let user = require('./routes/user');
 app.use('/user' ,check , user);
@@ -71,10 +59,6 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 
-
-// db.ref('user').once('value', function (snapshot) {
-//   console.log(snapshot.val());
-// })
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

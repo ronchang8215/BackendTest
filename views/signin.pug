@@ -1,10 +1,6 @@
 extends layout
 
 block content
-  //- h1 #{title}
-  //- ul.list-group
-  //-   each article, i in articles
-  //-    li.list-group-item= article.title
   form.text-center(action="/login/logout", method="post")
     if uid
       h3 您的名稱是： #{displayName}
