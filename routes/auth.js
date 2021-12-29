@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+var express = require('express');
+var router = express.Router();
 var firebase = require('../config/connection');
 require("firebase/auth");
 var check = require('express-validator/check').check;

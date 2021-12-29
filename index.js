@@ -11,8 +11,8 @@ var db = require('./config/db');
 
 var csrfProtection = csurf({ cookie: true });
 
-const app = express();
-const port = process.env.PORT || 7000;
+var app = express();
+var port = process.env.PORT || 7000;
 
 var check = function(req, res, next) {
   if(req.session.uid){
@@ -28,7 +28,6 @@ app.set('view engine', 'pug');
 //set public
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -48,10 +47,10 @@ app.get('/', function (req, res) {
 });
 
 //routes
-let user = require('./routes/user');
+var user = require('./routes/user');
 app.use('/user' ,check , user);
 
-let authRouter = require('./routes/auth');
+var authRouter = require('./routes/auth');
 app.use('/login',authRouter);
 
 
